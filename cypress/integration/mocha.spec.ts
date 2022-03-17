@@ -27,4 +27,17 @@ describe('Mocha', () => {
       expect(1 + 2).to.eq(3);
     });
   });
+
+  describe('Assetions from chai', () => {
+    it('handles assertions correctly', () => {
+      expect(1 + 1).to.eq(2);
+      expect('hello').to.be.a('string');
+      expect([1, 2]).to.be.an('array'); // an by a e i o u
+      expect('hello').to.include('hell');
+      expect({ name: 'pla' }).to.have.property('name');
+      expect({ age: 24 }).to.deep.eq({ age: 24 });
+      expect([]).to.be.empty;
+      expect([1, 2, 3]).to.have.lengthOf(3);
+    });
+  });
 });
