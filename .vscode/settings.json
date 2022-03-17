@@ -1,0 +1,9 @@
+{
+  "editor.formatOnSaveMode": false, // ดู eslint เป็นหลัก
+  "editor.tabSize": 2,
+  "[typescript]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true 
+    }
+  }
+}
