@@ -1,3 +1,5 @@
+const { _ } = Cypress;
+
 describe('Mocha', () => {
   describe('Hooks', () => {
     before(() => {
@@ -74,4 +76,41 @@ describe('Mocha', () => {
       cy.get('#invisible').should('be.hidden');
     });
   });
+
+  describe('Lodash', () => {
+    it('handles Lodash methods correctly', () => {
+      const person = {
+        name: 'Pla',
+        age: 28,
+        gender: 'male',
+      };
+
+      expect(_.omit(person, 'name')).to.deep.eq({
+        age: 28,
+        gender: 'male',
+      });
+      expect(_.omit(person, ['name', 'age'])).to.deep.eq({
+        gender: 'male',
+      });
+      expect(_.pick(person, 'name')).to.deep.eq({
+        name: 'Pla',
+      });
+      expect(_.pick(person, ['name', 'age'])).to.deep.eq({
+        name: 'Pla',
+        age: 28,
+      });
+      expect(
+        _.merge({ a: 1, b: { c: 2 } }, { a: 3, d: 4, b: { e: 5 } })
+      ).to.deep.eq({
+        a: 3,
+        b: { c: 2, e: 5 },
+        d: 4,
+      });
+      expect(_.times(5, (index) => index)).to.deep.eq([0, 1, 2, 3, 4]);
+      expect(_.invert({ a: 1, b: 2 })).to.deep.eq({ 1: 'a', 2: 'b' });
+    });
+  });
 });
+
+// ให้รู้ชนิด export ของ Lodash
+export {};
