@@ -47,8 +47,11 @@ describe('Mocha', () => {
   });
 
   describe('jQuery Selectors', () => {
-    it('select element correctly', () => {
+    beforeEach(() => {
       cy.visit('http://127.0.0.1:3000/cypress/selectors');
+    });
+
+    it('select element correctly', () => {
       cy.get('#outlined').should('contain', 'Outlined Button');
       cy.get('.MuiButton-containedPrimary').should(
         'contain',
@@ -59,6 +62,16 @@ describe('Mocha', () => {
       cy.get('.text-group p:nth-child(2)').should('contain', 'Body');
       cy.get('[data-testid="subtitle"]').should('contain', 'Subtitle');
       cy.get('.text-group p:last-child').should('contain', 'Caption');
+    });
+
+    it('verifies selectors with chai jQuery correctly', () => {
+      cy.get('#outlined').should('contain', 'Outlined Button');
+      /// ถ้า have text ค้องใส่เต็ม
+      cy.get('#outlined').should('have.text', 'Outlined Button (#outlined)');
+      cy.get('button[type="submit"]').should('have.attr', 'type', 'submit');
+      cy.get('#outlined').should('be.visible');
+      cy.get('#outlined').should('be.not.hidden');
+      cy.get('#invisible').should('be.hidden');
     });
   });
 });
