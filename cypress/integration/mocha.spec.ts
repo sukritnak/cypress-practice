@@ -38,6 +38,11 @@ describe('Mocha', () => {
       expect({ age: 24 }).to.deep.eq({ age: 24 });
       expect([]).to.be.empty;
       expect([1, 2, 3]).to.have.lengthOf(3);
+
+      cy.wrap(1 + 1).should('eq', 2);
+      cy.wrap('hello').should('be.a', 'string');
+      cy.wrap({ name: 'pla' }).should('have.property', 'name');
+      cy.wrap([]).should('be.empty');
     });
   });
 });
