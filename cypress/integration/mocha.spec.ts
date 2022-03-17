@@ -45,4 +45,20 @@ describe('Mocha', () => {
       cy.wrap([]).should('be.empty');
     });
   });
+
+  describe('jQuery Selectors', () => {
+    it('select element correctly', () => {
+      cy.visit('http://127.0.0.1:3000/cypress/selectors');
+      cy.get('#outlined').should('contain', 'Outlined Button');
+      cy.get('.MuiButton-containedPrimary').should(
+        'contain',
+        'Contained Button'
+      );
+      cy.get('button[type="submit"]').should('contain', 'Contained Button');
+      cy.get('.text-group p:first-child').should('contain', 'H4');
+      cy.get('.text-group p:nth-child(2)').should('contain', 'Body');
+      cy.get('[data-testid="subtitle"]').should('contain', 'Subtitle');
+      cy.get('.text-group p:last-child').should('contain', 'Caption');
+    });
+  });
 });
